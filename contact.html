@@ -8,7 +8,8 @@
 <!-- Modern Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- Spatial XR OS Engine Styles -->
+<link rel="stylesheet" href="css/xr-styles.css">
 
 <style>
 :root {
@@ -92,10 +93,10 @@ button { font-family: inherit; }
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: rgba(5, 6, 11, 0.92);
+  background: rgba(4, 5, 27, 0.92);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(147, 51, 234, 0.3);
+  border-bottom: 1px solid rgba(157, 50, 130, 0.35);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
 }
 
@@ -123,7 +124,7 @@ button { font-family: inherit; }
   width: auto;
   max-width: 180px;
   object-fit: contain;
-  filter: drop-shadow(0 2px 10px rgba(168, 85, 247, 0.3));
+  filter: none;
 }
 
 .header-heading {
@@ -145,10 +146,11 @@ button { font-family: inherit; }
 }
 
 .site-title a {
-  background: linear-gradient(135deg, #FFFFFF 0%, #A855F7 50%, #06B6D4 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 20px rgba(168, 85, 247, 0.2);
+  color: #FFFFFF;
+  background: none;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: #FFFFFF;
+  text-shadow: none;
 }
 
 .site-subtitle {
@@ -581,7 +583,7 @@ textarea.form-control {
         <img src="images/collegelogo.png" alt="GCET College Logo" class="header-logo">
       </a>
       <div class="header-heading">
-        <h1 class="site-title"><a href="index.html">AR/VR RESEARCH LAB</a></h1>
+        <h1 class="site-title"><a href="index.html"><span class="w-cyan">AR/VR</span> <span class="w-white">RESEARCH</span> <span class="w-coral">LAB</span></a></h1>
         <span class="site-subtitle">EXPLORING THE FUTURE OF IMMERSIVE TECHNOLOGIES</span>
       </div>
       <a href="index.html" class="header-logo-wrap right-logo" title="AR/VR Research Lab">
@@ -614,7 +616,7 @@ textarea.form-control {
 
     <div class="hero-content reveal in">
       <p class="eyebrow">Get in Touch</p>
-      <h1>LET'S CONNECT</h1>
+      <h1><span class="w-white">LET'S</span> <span class="w-coral">CONNECT</span></h1>
       <p class="hero-tag">
         Great ideas begin with meaningful conversations. Whether you're interested in joining the lab, collaborating on research, organizing workshops, or exploring immersive technologies, we'd be delighted to hear from you.
       </p>
@@ -626,7 +628,7 @@ textarea.form-control {
     <div class="section-label"><span class="dash"></span><span class="eyebrow">Lab Details</span></div>
     <div class="contact-grid">
       <div class="info-card">
-        <div class="card-num">📍 VISIT US</div>
+        <div class="card-num">VISIT US</div>
         <h3>AR/VR Research Lab</h3>
         <p>
           Cellar, Block 5<br>
@@ -636,7 +638,7 @@ textarea.form-control {
       </div>
 
       <div class="info-card">
-        <div class="card-num">🕒 LAB AVAILABILITY</div>
+        <div class="card-num">LAB AVAILABILITY</div>
         <h3>Open 24×7</h3>
         <p>
           Accessible for registered members, research activities, active development, and approved project work.
@@ -644,26 +646,13 @@ textarea.form-control {
       </div>
 
       <div class="info-card">
-        <div class="card-num">📞 DIRECT CONTACT</div>
+        <div class="card-num">DIRECT CONTACT</div>
         <h3>Get in Touch</h3>
         <p>
           <strong>Email:</strong> <a href="mailto:xrresearchlab@gcet.edu.in" style="color:var(--cyan-glow);">xrresearchlab@gcet.edu.in</a><br>
           <strong>Phone:</strong> <a href="tel:8763688312" style="color:var(--cyan-glow);">+91 8763688312</a>
         </p>
       </div>
-    </div>
-
-    <!-- Lead Researcher Highlight Card -->
-    <div class="lead-card">
-      <div class="lead-info">
-        <h3>MD Akif</h3>
-        <p>AR/VR Research Lab Lead Researcher &amp; Head</p>
-      </div>
-      <div class="lead-contact">
-        <span>📧 <a href="mailto:xrresearchlab@gcet.edu.in">xrresearchlab@gcet.edu.in</a></span>
-        <span>📞 <a href="tel:8763688312">+91 8763688312</a></span>
-      </div>
-    </div>
   </section>
 
   <!-- Section 2: Social Media Connect Grid -->
@@ -674,11 +663,11 @@ textarea.form-control {
     </h2>
 
     <div class="social-grid">
-      <a href="#" class="social-pill" target="_blank" rel="noopener">📸 Instagram</a>
-      <a href="#" class="social-pill" target="_blank" rel="noopener">💼 LinkedIn</a>
-      <a href="#" class="social-pill" target="_blank" rel="noopener">💻 GitHub</a>
-      <a href="#" class="social-pill" target="_blank" rel="noopener">▶️ YouTube</a>
-      <a href="#" class="social-pill" target="_blank" rel="noopener">💬 Discord</a>
+      <a href="#" class="social-pill" target="_blank" rel="noopener">Instagram</a>
+      <a href="#" class="social-pill" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="#" class="social-pill" target="_blank" rel="noopener">GitHub</a>
+      <a href="#" class="social-pill" target="_blank" rel="noopener">YouTube</a>
+      <a href="#" class="social-pill" target="_blank" rel="noopener">Discord</a>
     </div>
   </section>
 
@@ -722,7 +711,7 @@ textarea.form-control {
         </div>
 
         <button type="submit" class="btn-submit">Send Message →</button>
-        <div class="sent-msg">⚡ Message sent successfully — we will be in touch shortly!</div>
+        <div class="sent-msg">Message sent successfully — we will be in touch shortly!</div>
       </form>
     </div>
   </section>
@@ -760,5 +749,8 @@ textarea.form-control {
     }, { threshold: 0.15 });
     reveals.forEach(r => observer.observe(r));
   </script>
+
+  <!-- Spatial XR OS Engine Script -->
+  <script src="js/xr-engine.js"></script>
 </body>
 </html>

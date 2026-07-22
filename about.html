@@ -8,7 +8,8 @@
 <!-- Modern Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<!-- Spatial XR OS Engine Styles -->
+<link rel="stylesheet" href="css/xr-styles.css">
 
 <style>
 :root {
@@ -92,10 +93,10 @@ button { font-family: inherit; }
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: rgba(5, 6, 11, 0.92);
+  background: rgba(4, 5, 27, 0.92);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(147, 51, 234, 0.3);
+  border-bottom: 1px solid rgba(157, 50, 130, 0.35);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
 }
 
@@ -123,7 +124,7 @@ button { font-family: inherit; }
   width: auto;
   max-width: 180px;
   object-fit: contain;
-  filter: drop-shadow(0 2px 10px rgba(168, 85, 247, 0.3));
+  filter: none;
 }
 
 .header-heading {
@@ -145,10 +146,11 @@ button { font-family: inherit; }
 }
 
 .site-title a {
-  background: linear-gradient(135deg, #FFFFFF 0%, #A855F7 50%, #06B6D4 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 20px rgba(168, 85, 247, 0.2);
+  color: #FFFFFF;
+  background: none;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: #FFFFFF;
+  text-shadow: none;
 }
 
 .site-subtitle {
@@ -528,7 +530,7 @@ section { padding: 90px 5vw; position: relative; }
         <img src="images/collegelogo.png" alt="GCET College Logo" class="header-logo">
       </a>
       <div class="header-heading">
-        <h1 class="site-title"><a href="index.html">AR/VR RESEARCH LAB</a></h1>
+        <h1 class="site-title"><a href="index.html"><span class="w-cyan">AR/VR</span> <span class="w-white">RESEARCH</span> <span class="w-coral">LAB</span></a></h1>
         <span class="site-subtitle">EXPLORING THE FUTURE OF IMMERSIVE TECHNOLOGIES</span>
       </div>
       <a href="index.html" class="header-logo-wrap right-logo" title="AR/VR Research Lab">
@@ -561,7 +563,7 @@ section { padding: 90px 5vw; position: relative; }
 
     <div class="hero-content reveal in">
       <p class="eyebrow">Multidisciplinary Center</p>
-      <h1>WHO WE ARE</h1>
+      <h1><span class="w-white">WHO</span> <span class="w-coral">WE ARE</span></h1>
       <p class="hero-tag">
         The <strong>AR/VR Research Lab</strong> at <strong>Geethanjali College of Engineering &amp; Technology</strong> is a multidisciplinary research and innovation center committed to advancing immersive technologies through education, experimentation, and collaborative research.
       </p>
@@ -617,14 +619,14 @@ section { padding: 90px 5vw; position: relative; }
   <section class="reveal">
     <div class="vm-grid">
       <div class="vm-card">
-        <div class="vm-title">🔭 Vision</div>
+        <div class="vm-title">Vision</div>
         <p style="color: var(--text-muted); font-size: 16px; line-height: 1.75;">
           To become a leading academic center for immersive technology research, innovation, and experiential learning while contributing meaningful solutions to society through Extended Reality.
         </p>
       </div>
 
       <div class="vm-card">
-        <div class="vm-title">🚀 Mission</div>
+        <div class="vm-title">Mission</div>
         <ul class="mission-list">
           <li><span class="mission-bullet">✓</span> Advance research in immersive technologies.</li>
           <li><span class="mission-bullet">✓</span> Encourage interdisciplinary innovation across departments.</li>
@@ -667,26 +669,6 @@ section { padding: 90px 5vw; position: relative; }
     </div>
   </section>
 
-  <!-- Section 7: Looking Ahead & Leadership -->
-  <section class="reveal">
-    <div class="section-label"><span class="dash"></span><span class="eyebrow">Looking Ahead</span></div>
-    <h2 class="story-heading">
-      As immersive computing continues to evolve, the AR/VR Research Lab remains committed to exploring new frontiers in Spatial Computing, Artificial Intelligence, Digital Twins, Human-Centered Design, and future interaction paradigms.
-    </h2>
-
-    <!-- Lead Researcher Spotlight Card -->
-    <div class="lead-card">
-      <div class="lead-info">
-        <h3>MD Akif</h3>
-        <p>AR/VR Research Lab Lead Researcher &amp; Head</p>
-      </div>
-      <div class="lead-contact">
-        <span>📧 <a href="mailto:xrresearchlab@gcet.edu.in">xrresearchlab@gcet.edu.in</a></span>
-        <span>📞 <a href="tel:8763688312">+91 8763688312</a></span>
-      </div>
-    </div>
-  </section>
-
   <!-- Footer -->
   <footer class="footer">
     <div>© 2026 AR/VR RESEARCH LAB — GEETHANJALI COLLEGE OF ENGINEERING &amp; TECHNOLOGY</div>
@@ -720,5 +702,8 @@ section { padding: 90px 5vw; position: relative; }
     }, { threshold: 0.15 });
     reveals.forEach(r => observer.observe(r));
   </script>
+
+  <!-- Spatial XR OS Engine Script -->
+  <script src="js/xr-engine.js"></script>
 </body>
 </html>
