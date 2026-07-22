@@ -120,12 +120,17 @@ button { font-family: inherit; }
 }
 
 .header-logo {
-  height: 58px;
+  height: 84px;
   width: auto;
-  max-width: 180px;
+  max-width: 240px;
   object-fit: contain;
   filter: none;
   mix-blend-mode: normal;
+}
+
+.left-logo .header-logo {
+  height: 108px;
+  max-width: 290px;
 }
 
 .header-heading {
@@ -420,13 +425,20 @@ section { padding: 90px 5vw; position: relative; }
 
 /* Contact Form Styling */
 .contact-form-wrapper {
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.85);
   border: 1px solid var(--border-glass);
   border-radius: 20px;
   padding: 40px;
   backdrop-filter: blur(20px);
   max-width: 780px;
   margin-top: 20px;
+  transform: none !important;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease !important;
+}
+
+.contact-form-wrapper:hover {
+  transform: none !important;
+  box-shadow: 0 12px 40px rgba(197, 179, 211, 0.25);
 }
 
 .contact-form {
@@ -557,7 +569,7 @@ textarea.form-control {
 
 @media (max-width: 768px) {
   .header-top { padding: 10px 4vw; gap: 10px; }
-  .header-logo { height: 42px; }
+  .header-logo { height: 58px; }
   .site-title { font-size: 17px; }
   .site-subtitle { font-size: 9px; letter-spacing: 0.14em; }
   .header-bottom { justify-content: flex-end; padding: 6px 4vw; }

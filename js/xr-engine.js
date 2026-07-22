@@ -341,7 +341,7 @@
   // 3. 3D SPATIAL PARALLAX & VOLUMETRIC SPECULAR TILT ENGINE
   // =========================================================================
   function initSpatialTiltEngine() {
-    const tiltSelector = '.glass-card, .info-card, .member-card, .hero-statement-card, .quote-banner, .vm-card, .philo-card, .contact-form-wrapper, .lead-card, .grid5 .cell';
+    const tiltSelector = '.glass-card, .info-card, .member-card, .hero-statement-card, .quote-banner, .vm-card, .philo-card, .lead-card, .grid5 .cell';
     const tiltElements = document.querySelectorAll(tiltSelector);
 
     tiltElements.forEach(el => {

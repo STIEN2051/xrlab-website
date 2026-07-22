@@ -238,9 +238,23 @@ body::after {
 }
 
 .header-logo {
+  height: 84px !important;
+  width: auto !important;
+  max-width: 240px !important;
+  object-fit: contain !important;
   filter: none !important;
   mix-blend-mode: normal !important;
   background: transparent !important;
+}
+
+.left-logo .header-logo, .left-logo-img {
+  height: 108px !important;
+  max-width: 290px !important;
+}
+
+.right-logo .header-logo, .right-logo-img {
+  height: 84px !important;
+  max-width: 240px !important;
 }
 
 .hero-content-wrapper, .hero-content {
