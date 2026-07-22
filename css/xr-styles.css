@@ -1,25 +1,29 @@
 /* ==========================================================================
    AR/VR RESEARCH LAB - SPATIAL COMPUTING XR OS STYLES
-   Aesthetic Color System & VR Ghost Interaction Hand (Matching hands.png)
+   Soft Lavender & Rose Pastel Palette (#FBEFEF, #FFE2E2, #F5CBCB, #C5B3D3)
    ========================================================================== */
 
 :root {
-  /* Color Palette from color pallete.png */
-  --bg-dark: #04051B;                  /* Deepest Midnight Navy */
-  --bg-card: rgba(43, 30, 112, 0.45);        /* Translucent Royal Violet Glass */
-  --bg-card-hover: rgba(53, 32, 107, 0.75);
-  --border-glass: rgba(157, 50, 130, 0.3);
-  --border-glow: rgba(255, 107, 107, 0.55);
+  /* Pastel Apple-Style Research Lab Palette */
+  --bg-dark: #FBEFEF;                  /* Primary blush off-white background */
+  --bg-card: rgba(255, 255, 255, 0.75); /* Frosted white glass card */
+  --bg-card-hover: rgba(255, 255, 255, 0.95);/* Bright white hover finish */
+  --border-glass: rgba(197, 179, 211, 0.25); /* Soft lavender border */
+  --border-glow: #C5B3D3;              /* Active border */
   
-  --navy-deep: #03045E;
-  --indigo-royal: #2B1E70;
-  --orchid-magenta: #9D3282;
-  --coral-vibrant: #FF6B6B;
-  --cyan-glow: #38BDF8;                /* Spatial Cyan Accent */
+  --primary-accent: #C5B3D3;           /* Primary Accent (Soft Lavender) */
+  --secondary-accent: #F5CBCB;         /* Secondary Accent (Rose Blush) */
+  --light-accent: #FFE2E2;             /* Soft Pastel Pink accent */
   
-  --text-main: #F8FAFC;
-  --text-muted: #CBD5E1;
-  --text-dim: #94A3B8;
+  --navy-deep: #FBEFEF;
+  --indigo-royal: #C5B3D3;
+  --orchid-magenta: #F5CBCB;
+  --coral-vibrant: #FFE2E2;
+  --cyan-glow: #C5B3D3;                
+  
+  --text-main: #2B2B2B;                /* Primary text (Crisp Dark Charcoal) */
+  --text-muted: rgba(43, 43, 43, 0.75); /* Secondary text */
+  --text-dim: rgba(43, 43, 43, 0.55);   /* Muted text */
   
   --font-display: 'Outfit', sans-serif;
   --font-body: 'Inter', sans-serif;
@@ -32,7 +36,23 @@ body {
   font-family: var(--font-body);
 }
 
-/* Background Ambient Glows tuned to new palette */
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+  width: 10px;
+  background: #FBEFEF;
+}
+::-webkit-scrollbar-track {
+  background: #FBEFEF;
+}
+::-webkit-scrollbar-thumb {
+  background: #C5B3D3;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #F5CBCB;
+}
+
+/* Background Ambient Glows tuned to soft lavender & rose ambient lighting */
 body::before {
   content: '';
   position: fixed;
@@ -40,7 +60,7 @@ body::before {
   left: 15%;
   width: 700px;
   height: 700px;
-  background: radial-gradient(circle, rgba(157, 50, 130, 0.22) 0%, rgba(4, 5, 27, 0) 70%);
+  background: radial-gradient(circle, rgba(197, 179, 211, 0.25) 0%, rgba(251, 239, 239, 0) 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -51,7 +71,7 @@ body::after {
   right: 10%;
   width: 750px;
   height: 750px;
-  background: radial-gradient(circle, rgba(255, 107, 107, 0.15) 0%, rgba(4, 5, 27, 0) 70%);
+  background: radial-gradient(circle, rgba(245, 203, 203, 0.22) 0%, rgba(251, 239, 239, 0) 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -61,7 +81,7 @@ body::after {
   position: fixed;
   inset: 0;
   z-index: 99999;
-  background: #04051B;
+  background: #FBEFEF;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -87,7 +107,7 @@ body::after {
   z-index: 2;
 }
 
-/* Simple & Elegant 3D Spinner Animation */
+/* 3D Spinner Animation in Soft Lavender Palette */
 .simple-3d-spinner {
   position: relative;
   width: 76px;
@@ -106,20 +126,20 @@ body::after {
 }
 
 .ring-1 {
-  border-top-color: #38BDF8;
-  border-right-color: rgba(56, 189, 248, 0.2);
+  border-top-color: #C5B3D3;
+  border-right-color: rgba(197, 179, 211, 0.25);
   animation: spin3dX 1.4s ease-in-out infinite;
 }
 
 .ring-2 {
-  border-bottom-color: #FF6B6B;
-  border-left-color: rgba(255, 107, 107, 0.2);
+  border-bottom-color: #F5CBCB;
+  border-left-color: rgba(245, 203, 203, 0.25);
   animation: spin3dY 1.8s ease-in-out infinite;
 }
 
 .ring-3 {
-  border-left-color: #C084FC;
-  border-top-color: rgba(192, 132, 252, 0.2);
+  border-left-color: #C5B3D3;
+  border-top-color: rgba(197, 179, 211, 0.25);
   animation: spin3dZ 2.2s ease-in-out infinite;
 }
 
@@ -131,9 +151,9 @@ body::after {
   height: 14px;
   margin-top: -7px;
   margin-left: -7px;
-  background: #38BDF8;
+  background: #C5B3D3;
   border-radius: 50%;
-  box-shadow: 0 0 16px #38BDF8, 0 0 28px #FF6B6B;
+  box-shadow: 0 0 16px rgba(197, 179, 211, 0.6), 0 0 28px rgba(245, 203, 203, 0.5);
   animation: pulseCore 1.2s ease-in-out infinite alternate;
 }
 
@@ -163,12 +183,13 @@ body::after {
   font-weight: 800;
   letter-spacing: 0.08em;
   margin-bottom: 18px;
+  color: #2B2B2B;
 }
 
 .boot-progress-bar {
   width: 220px;
   height: 4px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(197, 179, 211, 0.2);
   border-radius: 4px;
   overflow: hidden;
   margin-bottom: 12px;
@@ -178,45 +199,50 @@ body::after {
 .boot-progress-fill {
   width: 0%;
   height: 100%;
-  background: linear-gradient(90deg, #38BDF8, #FF6B6B);
+  background: linear-gradient(90deg, #C5B3D3, #F5CBCB);
   border-radius: 4px;
   transition: width 0.08s ease;
-  box-shadow: 0 0 12px #38BDF8;
+  box-shadow: 0 0 12px rgba(197, 179, 211, 0.4);
 }
 
 .boot-ticker {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--cyan-glow);
+  color: #8E6CA2;
   letter-spacing: 0.14em;
 }
 
 
-/* ---------- 3. VISIONOS FLOATING NAVIGATION & CONTROLS ---------- */
+/* ---------- 3. NAVIGATION & CONTROLS ---------- */
 .site-header {
-  background: rgba(4, 5, 27, 0.92) !important;
+  background: rgba(251, 239, 239, 0.88) !important;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(157, 50, 130, 0.35) !important;
+  border-bottom: 1px solid rgba(197, 179, 211, 0.3) !important;
   transition: padding 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
 }
 
 .site-header.scrolled {
-  background: rgba(4, 5, 27, 0.96) !important;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.85), 0 0 24px rgba(157, 50, 130, 0.25);
+  background: rgba(251, 239, 239, 0.96) !important;
+  box-shadow: 0 8px 30px rgba(197, 179, 211, 0.25);
 }
 .site-header.scrolled .header-top {
   padding: 8px 5vw !important;
 }
 
-/* Blend logo background seamlessly with site-header */
+.header-bottom {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
 .header-logo {
   filter: none !important;
-  mix-blend-mode: screen !important;
+  mix-blend-mode: normal !important;
   background: transparent !important;
 }
 
-/* Clean Hero Layout */
 .hero-content-wrapper, .hero-content {
   max-width: 920px !important;
   margin-left: 0 !important;
@@ -234,34 +260,55 @@ body::after {
   text-shadow: none !important;
 }
 
-.w-white   { color: #FFFFFF !important; -webkit-text-fill-color: #FFFFFF !important; }
-.w-coral   { color: #FF6B6B !important; -webkit-text-fill-color: #FF6B6B !important; }
-.w-cyan    { color: #38BDF8 !important; -webkit-text-fill-color: #38BDF8 !important; }
-.w-purple  { color: #C084FC !important; -webkit-text-fill-color: #C084FC !important; }
-.w-magenta { color: #F472B6 !important; -webkit-text-fill-color: #F472B6 !important; }
+.w-white   { color: #2B2B2B !important; -webkit-text-fill-color: #2B2B2B !important; }
+.w-coral   { color: #9B72B0 !important; -webkit-text-fill-color: #9B72B0 !important; }
+.w-cyan    { color: #D48484 !important; -webkit-text-fill-color: #D48484 !important; }
+.w-purple  { color: #9B72B0 !important; -webkit-text-fill-color: #9B72B0 !important; }
+.w-magenta { color: #D48484 !important; -webkit-text-fill-color: #D48484 !important; }
 
 .site-subtitle {
-  color: var(--cyan-glow) !important;
+  color: #8E6CA2 !important;
+}
+
+.navlinks {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 24px;
+}
+
+.navlinks a {
+  color: rgba(43, 43, 43, 0.75);
+}
+
+.navlinks a:hover {
+  color: #8E6CA2 !important;
+  background: rgba(245, 203, 203, 0.35) !important;
 }
 
 .navlinks a.active {
-  background: rgba(157, 50, 130, 0.3) !important;
-  border-color: var(--orchid-magenta) !important;
-  box-shadow: 0 0 16px rgba(157, 50, 130, 0.35) !important;
-  color: #FFFFFF !important;
+  background: rgba(197, 179, 211, 0.35) !important;
+  border-color: #C5B3D3 !important;
+  box-shadow: 0 0 14px rgba(197, 179, 211, 0.35) !important;
+  color: #2B2B2B !important;
+  font-weight: 700 !important;
 }
 
 .audio-toggle-btn {
-  background: rgba(157, 50, 130, 0.2);
-  border: 1px solid rgba(157, 50, 130, 0.45);
+  position: absolute !important;
+  right: 5vw !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  background: rgba(197, 179, 211, 0.25);
+  border: 1px solid rgba(197, 179, 211, 0.45);
   border-radius: 20px;
-  color: var(--coral-vibrant);
+  color: #5C3E75;
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.1em;
   padding: 5px 14px;
   cursor: pointer;
-  margin-left: 20px;
+  margin-left: 0;
   transition: all 0.25s ease;
   display: inline-flex;
   align-items: center;
@@ -269,13 +316,13 @@ body::after {
 }
 
 .audio-toggle-btn:hover {
-  background: rgba(255, 107, 107, 0.25);
-  border-color: var(--coral-vibrant);
-  box-shadow: 0 0 14px rgba(255, 107, 107, 0.4);
+  background: rgba(245, 203, 203, 0.45);
+  border-color: #C5B3D3;
+  box-shadow: 0 0 14px rgba(197, 179, 211, 0.35);
 }
 
 
-/* ---------- 4. SPATIAL FLOATING VISIONOS MODAL ---------- */
+/* ---------- 4. SPATIAL FLOATING MODAL ---------- */
 .xr-modal {
   position: fixed;
   inset: 0;
@@ -297,7 +344,7 @@ body::after {
 .xr-modal-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(4, 5, 27, 0.88);
+  background: rgba(251, 239, 239, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
@@ -305,9 +352,9 @@ body::after {
 .xr-modal-window {
   position: relative;
   z-index: 2;
-  background: rgba(43, 30, 112, 0.85);
-  border: 1px solid var(--border-glow);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 35px rgba(255, 107, 107, 0.3);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #C5B3D3;
+  box-shadow: 0 20px 60px rgba(197, 179, 211, 0.35);
   border-radius: 24px;
   width: 100%;
   max-width: 640px;
@@ -328,9 +375,9 @@ body::after {
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #FFF;
+  background: rgba(197, 179, 211, 0.15);
+  border: 1px solid rgba(197, 179, 211, 0.3);
+  color: #2B2B2B;
   font-size: 16px;
   display: flex;
   align-items: center;
@@ -340,8 +387,8 @@ body::after {
 }
 
 .xr-modal-close:hover {
-  background: rgba(255, 107, 107, 0.3);
-  border-color: var(--coral-vibrant);
+  background: rgba(245, 203, 203, 0.35);
+  border-color: #F5CBCB;
   transform: rotate(90deg);
 }
 
@@ -349,7 +396,7 @@ body::after {
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.16em;
-  color: var(--coral-vibrant);
+  color: #8E6CA2;
   text-transform: uppercase;
 }
 
@@ -357,7 +404,7 @@ body::after {
   font-family: var(--font-display);
   font-size: 28px;
   font-weight: 800;
-  color: #FFF;
+  color: #2B2B2B;
   margin-top: 6px;
   margin-bottom: 16px;
 }
@@ -371,33 +418,49 @@ body::after {
 
 /* ---------- 5. BUTTONS & CARDS THEMED TO NEW PALETTE ---------- */
 .btn-primary {
-  background: linear-gradient(135deg, var(--orchid-magenta), var(--coral-vibrant)) !important;
-  border-color: rgba(255, 255, 255, 0.2) !important;
-  box-shadow: 0 4px 20px rgba(255, 107, 107, 0.4) !important;
+  background: #C5B3D3 !important;
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+  border: 1px solid rgba(197, 179, 211, 0.5) !important;
+  box-shadow: 0 4px 20px rgba(197, 179, 211, 0.35) !important;
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, var(--coral-vibrant), var(--orchid-magenta)) !important;
-  box-shadow: 0 8px 28px rgba(255, 107, 107, 0.6) !important;
+  background: #F5CBCB !important;
+  color: #2B2B2B !important;
+  box-shadow: 0 8px 28px rgba(245, 203, 203, 0.5) !important;
 }
 
-/* ---------- 6. 3D SPATIAL VOLUMETRIC TILE & SPECULAR SHEEN SYSTEM ---------- */
+.btn-secondary {
+  background: transparent !important;
+  color: #2B2B2B !important;
+  border: 1px solid #C5B3D3 !important;
+}
+
+.btn-secondary:hover {
+  background: rgba(197, 179, 211, 0.15) !important;
+  border-color: #C5B3D3 !important;
+  color: #8E6CA2 !important;
+}
+
+/* ---------- 6. CARDS & SPECULAR SHEEN SYSTEM ---------- */
 .glass-card, .info-card, .member-card, .hero-statement-card, .quote-banner, .vm-card, .philo-card, .contact-form-wrapper, .lead-card, .grid5 .cell {
   transform-style: preserve-3d;
   will-change: transform;
   position: relative;
   overflow: hidden;
-  background: var(--bg-card) !important;
-  border-color: var(--border-glass) !important;
+  background: rgba(255, 255, 255, 0.75) !important;
+  border: 1px solid rgba(197, 179, 211, 0.25) !important;
+  border-radius: 16px;
   transition: transform 0.15s cubic-bezier(0.2, 0, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
 }
 
 .glass-card:hover, .info-card:hover, .member-card:hover, .hero-statement-card:hover, .vm-card:hover, .philo-card:hover, .lead-card:hover, .grid5 .cell:hover {
-  background: var(--bg-card-hover) !important;
-  border-color: var(--coral-vibrant) !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: #C5B3D3 !important;
+  box-shadow: 0 12px 32px rgba(197, 179, 211, 0.35) !important;
 }
 
-/* Layer 3: Headings and Major Titles Extrude Highest in 3D Space (Z: 42px) */
 .glass-card h1, .glass-card h2, .glass-card h3,
 .info-card h1, .info-card h2, .info-card h3,
 .member-card h3, .member-card .name,
@@ -407,10 +470,9 @@ body::after {
   transform: translateZ(42px);
   transform-style: preserve-3d;
   transition: transform 0.25s cubic-bezier(0.2, 0, 0.2, 1), text-shadow 0.25s ease;
-  text-shadow: 0 8px 18px rgba(0, 0, 0, 0.6), 0 0 16px rgba(157, 50, 130, 0.35);
+  text-shadow: 0 4px 12px rgba(197, 179, 211, 0.15);
 }
 
-/* Layer 2: Subtitles, Tags, Icons, & Badges Float Mid-Air (Z: 26px) */
 .glass-card .tag, .glass-card .badge, .glass-card .icon,
 .info-card .tag, .member-card .role, .member-card .img-wrapper,
 .card-num, .area-pill, .social-pill, .cell .num {
@@ -419,14 +481,13 @@ body::after {
   transition: transform 0.25s cubic-bezier(0.2, 0, 0.2, 1);
 }
 
-/* Layer 1: Body Text & Paragraphs Float Slightly (Z: 14px) */
 .glass-card p, .info-card p, .member-card p, .hero-statement-card p, .vm-card p, .philo-card p, .lead-card p, .cell p {
   transform: translateZ(14px);
   transform-style: preserve-3d;
   transition: transform 0.25s cubic-bezier(0.2, 0, 0.2, 1);
 }
 
-/* Dynamic Holographic Specular Light Sheen Overlay */
+/* Dynamic Holographic Specular Light Sheen Overlay with Soft Lavender Highlights */
 .specular-sheen {
   position: absolute;
   inset: 0;
@@ -434,7 +495,7 @@ body::after {
   border-radius: inherit;
   opacity: 0;
   transition: opacity 0.35s ease;
-  background: radial-gradient(circle 280px at var(--sheen-x, 50%) var(--sheen-y, 50%), rgba(255, 255, 255, 0.25) 0%, rgba(56, 189, 248, 0.14) 35%, transparent 70%);
+  background: radial-gradient(circle 280px at var(--sheen-x, 50%) var(--sheen-y, 50%), rgba(255, 255, 255, 0.4) 0%, rgba(197, 179, 211, 0.2) 35%, transparent 70%);
   z-index: 10;
 }
 

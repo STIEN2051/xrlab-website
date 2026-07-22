@@ -144,10 +144,10 @@
     // Create 3D XR Visor Headset Group
     const xrHeadsetGroup = new THREE.Group();
 
-    // 1. Visor Main Frame Shield (Orchid Magenta Wireframe)
+    // 1. Visor Main Frame Shield (Soft Lavender Wireframe)
     const visorGeo = new THREE.BoxGeometry(3.6, 1.8, 1.3, 6, 4, 4);
     const visorMat = new THREE.MeshBasicMaterial({
-      color: 0x9D3282,
+      color: 0xC5B3D3,
       wireframe: true,
       transparent: true,
       opacity: 0.45
@@ -155,13 +155,13 @@
     const visorMesh = new THREE.Mesh(visorGeo, visorMat);
     xrHeadsetGroup.add(visorMesh);
 
-    // 2. Visor Front Glass Shield (Cyan Tinted Translucent Front Plate)
+    // 2. Visor Front Glass Shield (Soft Pastel Pink Tinted Translucent Front Plate)
     const shieldGeo = new THREE.PlaneGeometry(3.4, 1.6, 4, 4);
     const shieldMat = new THREE.MeshBasicMaterial({
-      color: 0x38BDF8,
+      color: 0xFFE2E2,
       wireframe: true,
       transparent: true,
-      opacity: 0.6,
+      opacity: 0.5,
       side: THREE.DoubleSide
     });
     const shieldMesh = new THREE.Mesh(shieldGeo, shieldMat);
@@ -171,7 +171,7 @@
     // 3. Dual Spatial Optical Lens Rings (Left & Right Eye Display Lenses)
     const lensGeo = new THREE.TorusGeometry(0.52, 0.07, 16, 32);
     const lensMat = new THREE.MeshBasicMaterial({
-      color: 0x38BDF8,
+      color: 0xC5B3D3,
       wireframe: true,
       transparent: true,
       opacity: 0.85
@@ -185,10 +185,10 @@
     rightLens.position.set(0.85, 0, 0.67);
     xrHeadsetGroup.add(rightLens);
 
-    // 4. Ergonomic Headband Strap Ring (Coral Vibrant)
+    // 4. Ergonomic Headband Strap Ring (Rose Blush Primary)
     const strapGeo = new THREE.TorusGeometry(2.1, 0.1, 16, 48);
     const strapMat = new THREE.MeshBasicMaterial({
-      color: 0xFF6B6B,
+      color: 0xF5CBCB,
       wireframe: true,
       transparent: true,
       opacity: 0.4
@@ -198,10 +198,10 @@
     strapMesh.position.z = -0.4;
     xrHeadsetGroup.add(strapMesh);
 
-    // 5. 6DOF Spatial Tracking Sensors (Glowing Corner Cameras)
+    // 5. 6DOF Spatial Tracking Sensors (Glowing Lavender Corner Cameras)
     const sensorGeo = new THREE.OctahedronGeometry(0.14, 1);
     const sensorMat = new THREE.MeshBasicMaterial({
-      color: 0xFF6B6B,
+      color: 0xC5B3D3,
       wireframe: true,
       transparent: true,
       opacity: 0.9
@@ -223,7 +223,7 @@
     // 6. Floating Spatial Orbit Ring surrounding Headset
     const orbitGeo = new THREE.TorusGeometry(3.3, 0.03, 16, 64);
     const orbitMat = new THREE.MeshBasicMaterial({
-      color: 0x38BDF8,
+      color: 0xC5B3D3,
       wireframe: true,
       transparent: true,
       opacity: 0.4
@@ -235,7 +235,7 @@
 
     scene.add(xrHeadsetGroup);
 
-    // Floating Particles System surrounding the XR Headset
+    // Floating Particles System in Soft Lavender & White
     const particleCount = 220;
     const particlesGeo = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
@@ -248,10 +248,10 @@
     particlesGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 
     const particlesMat = new THREE.PointsMaterial({
-      color: 0x38BDF8,
+      color: 0xC5B3D3,
       size: 0.055,
       transparent: true,
-      opacity: 0.75
+      opacity: 0.6
     });
     const particleSystem = new THREE.Points(particlesGeo, particlesMat);
     scene.add(particleSystem);
@@ -282,8 +282,8 @@
     if (toggleBtn) {
       toggleBtn.addEventListener('click', () => {
         speedMultiplier = speedMultiplier === 1 ? 2.5 : 1;
-        visorMat.color.setHex(speedMultiplier > 1 ? 0xFF6B6B : 0x9D3282);
-        lensMat.color.setHex(speedMultiplier > 1 ? 0x38BDF8 : 0x38BDF8);
+        visorMat.color.setHex(speedMultiplier > 1 ? 0xF5CBCB : 0xC5B3D3);
+        lensMat.color.setHex(speedMultiplier > 1 ? 0xF5CBCB : 0xC5B3D3);
       });
     }
 
@@ -365,8 +365,8 @@
         const rotY = elX * 16;  // 16 deg max yaw tilt
 
         el.style.transform = `perspective(1000px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translateZ(16px) scale(1.025)`;
-        el.style.borderColor = 'rgba(255, 107, 107, 0.55)';
-        el.style.boxShadow = `0 24px 50px rgba(4, 5, 27, 0.9), 0 0 30px rgba(157, 50, 130, 0.4)`;
+        el.style.borderColor = 'rgba(197, 179, 211, 0.55)';
+        el.style.boxShadow = `0 24px 50px rgba(197, 179, 211, 0.25), 0 0 30px rgba(245, 203, 203, 0.3)`;
 
         // Update Dynamic Holographic Specular Light Sheen Coordinates
         const percentX = ((mouseX / rect.width) * 100).toFixed(1);
