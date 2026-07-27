@@ -8,6 +8,8 @@
 <!-- Modern Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Three.js for 3D Spatial Canvas -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <!-- Spatial XR OS Engine Styles -->
 <link rel="stylesheet" href="css/xr-styles.css">
 
@@ -72,18 +74,7 @@ body::after {
   z-index: 0;
 }
 
-/* Dynamic Spotlight Mouse Cursor Lens */
-.cursor-spotlight {
-  position: fixed;
-  top: 0; left: 0;
-  width: 400px; height: 400px;
-  margin-left: -200px; margin-top: -200px;
-  background: radial-gradient(circle, rgba(197, 179, 211, 0.15) 0%, rgba(245, 203, 203, 0.08) 40%, rgba(251, 239, 239, 0) 70%);
-  pointer-events: none;
-  z-index: 1;
-  border-radius: 50%;
-  transition: transform 0.1s ease-out;
-}
+
 
 a { color: inherit; text-decoration: none; }
 button { font-family: inherit; }
@@ -239,23 +230,7 @@ button { font-family: inherit; }
   border-bottom: 1px solid var(--border-glass);
 }
 
-.viewfinder { position: absolute; inset: 24px; z-index: 3; pointer-events: none; }
-.vf-corner { position: absolute; width: 26px; height: 26px; border: 1.5px solid #C5B3D3; opacity: 0.55; }
-.vf-tl { top: 0; left: 0; border-right: none; border-bottom: none; }
-.vf-tr { top: 0; right: 0; border-left: none; border-bottom: none; }
-.vf-bl { bottom: 0; left: 0; border-right: none; border-top: none; }
-.vf-br { bottom: 0; right: 0; border-left: none; border-top: none; }
-.vf-tag {
-  position: absolute; top: 0; right: 34px;
-  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em;
-  color: #8E6CA2; opacity: 0.8;
-}
-.vf-tag.left { left: 34px; right: auto; }
-.vf-rec {
-  display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #C5B3D3; margin-right: 6px;
-  animation: pulse 1.8s infinite ease-in-out;
-}
-@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+
 
 .hero-content { position: relative; z-index: 4; max-width: 920px; }
 .eyebrow {
@@ -521,11 +496,11 @@ section { padding: 90px 5vw; position: relative; }
   .lead-card { flex-direction: column; align-items: flex-start; }
 }
 </style>
+<link rel="stylesheet" href="css/xr-styles.css">
 </head>
 <body>
 
-  <!-- Dynamic Spotlight Mouse Follower -->
-  <div class="cursor-spotlight" id="spotlight"></div>
+
 
   <!-- Standardized Site Header -->
   <header class="site-header">
@@ -537,9 +512,12 @@ section { padding: 90px 5vw; position: relative; }
         <h1 class="site-title"><a href="index.html"><span class="w-cyan">AR/VR</span> <span class="w-white">RESEARCH</span> <span class="w-coral">LAB</span></a></h1>
         <span class="site-subtitle">EXPLORING THE FUTURE OF IMMERSIVE TECHNOLOGIES</span>
       </div>
-      <a href="index.html" class="header-logo-wrap right-logo" title="AR/VR Research Lab">
-        <img src="images/lablogo.png" alt="AR/VR Research Lab Logo" class="header-logo">
-      </a>
+      <div style="display:flex; align-items:center; gap:10px;">
+        <a href="index.html" class="header-logo-wrap right-logo" title="AR/VR Research Lab">
+          <img src="images/lablogo.png" alt="AR/VR Research Lab Logo" class="header-logo">
+        </a>
+        <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Theme">🌙 Dark</button>
+      </div>
     </div>
     <div class="header-bottom">
       <nav class="navlinks" id="navlinks">
@@ -556,20 +534,12 @@ section { padding: 90px 5vw; position: relative; }
   </header>
 
   <header class="hero">
-    <div class="viewfinder">
-      <div class="vf-corner vf-tl"></div>
-      <div class="vf-corner vf-tr"></div>
-      <div class="vf-corner vf-bl"></div>
-      <div class="vf-corner vf-br"></div>
-      <div class="vf-tag left"><span class="vf-rec"></span>LAB VIEW — 02</div>
-      <div class="vf-tag">SCALE 1:1 · AR</div>
-    </div>
-
+    <div id="canvas-container" style="position:absolute; inset:0; pointer-events:none; z-index:1;"></div>
     <div class="hero-content reveal in">
       <p class="eyebrow">Multidisciplinary Center</p>
       <h1><span class="w-white">WHO</span> <span class="w-coral">WE ARE</span></h1>
       <p class="hero-tag">
-        The <strong>AR/VR Research Lab</strong> at <strong>Geethanjali College of Engineering &amp; Technology</strong> is a multidisciplinary research and innovation center committed to advancing immersive technologies through education, experimentation, and collaborative research.
+        The <strong>AR/VR Research Lab</strong> at <strong>GCET</strong> is a multidisciplinary research center advancing spatial computing, immersive simulation, and human-centered 3D technology.
       </p>
     </div>
   </header>
@@ -683,11 +653,7 @@ section { padding: 90px 5vw; position: relative; }
   </footer>
 
   <script>
-    // Dynamic Spotlight Mouse Follower
-    const spotlight = document.getElementById('spotlight');
-    document.addEventListener('mousemove', (e) => {
-      spotlight.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
-    });
+
 
     // Mobile Navigation Toggle
     document.getElementById('navtoggle').addEventListener('click', () => {
