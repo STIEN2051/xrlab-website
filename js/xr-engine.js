@@ -360,6 +360,7 @@
   function initSpatialTiltEngine() {
     const tiltSelector = '.glass-card, .info-card, .member-card, .hero-statement-card, .quote-banner, .vm-card, .philo-card, .lead-card, .grid5 .cell';
     const tiltElements = document.querySelectorAll(tiltSelector);
+    const isPointerFine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
     tiltElements.forEach(el => {
       // Inject Specular Sheen element if missing
@@ -368,6 +369,8 @@
         sheen.className = 'specular-sheen';
         el.appendChild(sheen);
       }
+
+      if (!isPointerFine) return; // Disable 3D tilt transform on touch devices to ensure smooth scrolling
 
       el.addEventListener('mousemove', (e) => {
         const rect = el.getBoundingClientRect();
@@ -495,6 +498,62 @@
         header.classList.add('scrolled');
       } else {
         header.classList.remove('scrolled');
+      }
+    });
+  }
+
+  // =========================================================================
+  // 5B. RESPONSIVE MOBILE DRAWER NAVIGATION CONTROLLER
+  // =========================================================================
+  function initMobileNav() {
+    const toggleBtn = document.getElementById('navtoggle') || document.querySelector('.navtoggle');
+    const navLinks = document.getElementById('navlinks') || document.querySelector('.navlinks');
+    if (!toggleBtn || !navLinks) return;
+
+    // Inject backdrop overlay if missing
+    let backdrop = document.querySelector('.nav-backdrop');
+    if (!backdrop) {
+      backdrop = document.createElement('div');
+      backdrop.className = 'nav-backdrop';
+      document.body.appendChild(backdrop);
+    }
+
+    const openMenu = () => {
+      toggleBtn.classList.add('open');
+      navLinks.classList.add('open');
+      backdrop.classList.add('open');
+      toggleBtn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+      if (typeof xrSound !== 'undefined' && xrSound.playClick) xrSound.playClick();
+    };
+
+    const closeMenu = () => {
+      toggleBtn.classList.remove('open');
+      navLinks.classList.remove('open');
+      backdrop.classList.remove('open');
+      toggleBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      if (typeof xrSound !== 'undefined' && xrSound.playClick) xrSound.playClick();
+    };
+
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (navLinks.classList.contains('open')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    });
+
+    backdrop.addEventListener('click', closeMenu);
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+        closeMenu();
       }
     });
   }
@@ -1167,10 +1226,29 @@
 
     if (closeBtn) closeBtn.addEventListener('click', closeModal);
 
-    // Attach click listener to all cards
+    // Attach click listener to all cards with touch-drag check
     const cardSelectors = '.info-card, .member-card, .glass-card, .domain-card, .lead-card, .philo-card, .vm-card';
     document.querySelectorAll(cardSelectors).forEach(card => {
+      let touchStartY = 0;
+      let isTouchDrag = false;
+
+      card.addEventListener('touchstart', (e) => {
+        if (e.touches && e.touches.length > 0) {
+          touchStartY = e.touches[0].clientY;
+          isTouchDrag = false;
+        }
+      }, { passive: true });
+
+      card.addEventListener('touchmove', (e) => {
+        if (e.touches && e.touches.length > 0) {
+          if (Math.abs(e.touches[0].clientY - touchStartY) > 10) {
+            isTouchDrag = true;
+          }
+        }
+      }, { passive: true });
+
       card.addEventListener('click', (e) => {
+        if (isTouchDrag) return; // Prevent triggering modal when scrolling on mobile touchscreens
         // Exclude interactive elements
         if (e.target.closest('a, button, input, textarea')) return;
 
@@ -1201,6 +1279,7 @@
     initCardEnlargementFocus();
     initSpatialTiltEngine();
     initSpatialHeader();
+    initMobileNav();
     initSpatialModal();
     initHoverExpandEngine();
   });
