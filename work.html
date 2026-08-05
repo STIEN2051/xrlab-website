@@ -91,12 +91,20 @@ button { font-family: inherit; }
   box-shadow: 0 4px 24px rgba(197, 179, 211, 0.15);
 }
 
+.header-logo-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 5vw 6px;
+}
+
 .header-top {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 12px 5vw;
-  gap: 20px;
+  justify-content: center;
+  padding: 4px 5vw;
+  gap: 16px;
+  position: relative;
 }
 
 .header-logo-wrap {
@@ -119,9 +127,9 @@ button { font-family: inherit; }
   mix-blend-mode: normal;
 }
 
-.left-logo .header-logo {
+.header-logo-bar .header-logo {
   height: 72px;
-  max-width: 240px;
+  max-width: 260px;
 }
 
 .header-heading {
@@ -485,24 +493,20 @@ section { padding: 90px 5vw; position: relative; }
 </head>
 <body>
 
-
-
   <!-- Standardized Site Header -->
   <header class="site-header">
-    <div class="header-top">
-      <a href="https://gcet.edu.in/" target="_blank" rel="noopener" class="header-logo-wrap left-logo" title="Geethanjali College of Engineering & Technology (Official Website)">
+    <div class="header-logo-bar">
+      <a href="https://gcet.edu.in/" target="_blank" rel="noopener" class="header-logo-wrap"
+        title="Geethanjali College of Engineering &amp; Technology (Official Website)">
         <img src="images/collegelogo.png" alt="GCET College Logo" class="header-logo">
       </a>
+    </div>
+    <div class="header-top">
       <div class="header-heading">
         <h1 class="site-title"><a href="index.html"><span class="w-cyan">AR/VR</span> <span class="w-white">RESEARCH</span> <span class="w-coral">LAB</span></a></h1>
         <span class="site-subtitle">EXPLORING THE FUTURE OF IMMERSIVE TECHNOLOGIES</span>
       </div>
-      <div style="display:flex; align-items:center; gap:10px;">
-        <a href="index.html" class="header-logo-wrap right-logo" title="AR/VR Research Lab">
-          <img src="images/lablogo.png" alt="AR/VR Research Lab Logo" class="header-logo">
-        </a>
-        <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Theme">🌙 Dark</button>
-      </div>
+      <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Theme">🌙 Dark</button>
     </div>
     <div class="header-bottom">
       <nav class="navlinks" id="navlinks">

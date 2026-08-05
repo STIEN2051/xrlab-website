@@ -214,31 +214,83 @@ body::after {
 
 
 /* ---------- 3. NAVIGATION & CONTROLS ---------- */
+html {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
 .site-header {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: rgba(251, 239, 239, 0.88);
+  background: rgba(251, 239, 239, 0.92);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(197, 179, 211, 0.3);
   transition: padding 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Fallback for browsers that don't support backdrop-filter (older Android) */
+@supports not (backdrop-filter: blur(20px)) {
+  .site-header {
+    background: rgba(251, 239, 239, 0.97);
+  }
+}
+
 .site-header.scrolled {
   background: rgba(251, 239, 239, 0.96);
   box-shadow: 0 8px 30px rgba(197, 179, 211, 0.25);
 }
+.site-header.scrolled .header-logo-bar {
+  padding: 6px 5vw;
+}
+.site-header.scrolled .header-logo-bar .header-logo {
+  height: 52px;
+}
 .site-header.scrolled .header-top {
-  padding: 8px 5vw;
+  padding: 4px 5vw;
 }
 
+/* -- Centered College Logo Bar (top-most row) -- */
+.header-logo-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 5vw 6px;
+  transition: padding 0.3s ease;
+}
+
+.header-logo-bar .header-logo-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.header-logo-bar .header-logo-wrap:hover {
+  transform: scale(1.04);
+}
+
+.header-logo-bar .header-logo {
+  height: 72px;
+  width: auto;
+  max-width: 260px;
+  object-fit: contain;
+  filter: none;
+  mix-blend-mode: normal;
+  background: transparent;
+  transition: height 0.3s ease;
+}
+
+/* -- Title + Theme Toggle Row -- */
 .header-top {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 12px 5vw;
+  justify-content: center;
+  padding: 4px 5vw;
   gap: 16px;
+  position: relative;
 }
 
 .header-logo-wrap {
@@ -262,22 +314,21 @@ body::after {
   background: transparent;
 }
 
-.left-logo .header-logo, .left-logo-img {
-  height: 72px;
-  max-width: 240px;
-}
-
-.right-logo .header-logo, .right-logo-img {
-  height: 60px;
-  max-width: 220px;
-}
-
 .header-heading {
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2px;
+  flex: 1;
+}
+
+/* Theme toggle positioned to the right of the title */
+.header-top .theme-toggle-btn {
+  position: absolute;
+  right: 5vw;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .hero-content-wrapper, .hero-content {
@@ -353,10 +404,13 @@ body.dark-mode .w-magenta { color: #F5CBCB; -webkit-text-fill-color: #F5CBCB; }
   text-transform: uppercase;
   color: var(--text-muted);
   position: relative;
-  padding: 6px 14px;
+  padding: 8px 14px;
   border-radius: 8px;
   transition: all 0.25s ease;
   border: 1px solid transparent;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .navlinks a:hover {
@@ -384,10 +438,14 @@ body.dark-mode .navlinks a.active {
   background: rgba(197, 179, 211, 0.25);
   border: 1px solid rgba(197, 179, 211, 0.45);
   border-radius: 8px;
-  padding: 8px 10px;
+  padding: 10px 12px;
   cursor: pointer;
   z-index: 1002;
   transition: all 0.25s ease;
+  min-width: 44px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
 }
 
 .navtoggle span {
@@ -1477,13 +1535,47 @@ body.dark-mode .ptag {
 }
 
 /* ==========================================================================
-   RESPONSIVE MEDIA QUERIES & WEBKIT / SAFARI CONSISTENCY UPGRADES
+   RESPONSIVE MEDIA QUERIES & WEBKIT / SAFARI / ANDROID CONSISTENCY UPGRADES
    ========================================================================== */
 
 /* Touch-safe 3D hover effects (enabled only for mouse pointer devices) */
 @media (hover: hover) and (pointer: fine) {
   .glass-card:hover, .info-card:hover, .member-card:hover, .hero-statement-card:hover, .vm-card:hover, .philo-card:hover, .lead-card:hover, .grid5 .cell:hover {
     transform: translateY(-4px) scale(1.02);
+  }
+}
+
+/* Disable 3D transforms on touch devices (prevents Android WebView glitches) */
+@media (hover: none) and (pointer: coarse) {
+  .glass-card, .info-card, .member-card, .hero-statement-card, .quote-banner,
+  .vm-card, .philo-card, .contact-form-wrapper, .lead-card, .grid5 .cell {
+    transform-style: flat !important;
+    perspective: none !important;
+    will-change: auto !important;
+  }
+  .glass-card h1, .glass-card h2, .glass-card h3,
+  .info-card h1, .info-card h2, .info-card h3,
+  .member-card h3, .member-card .name,
+  .hero-statement-card h2, .lead-card h2, .lead-card h3,
+  .vm-card h3, .philo-card h3,
+  .card-title, .hero-title, .cell h3,
+  .glass-card .tag, .glass-card .badge, .glass-card .icon,
+  .info-card .tag, .member-card .role, .member-card .img-wrapper,
+  .card-num, .area-pill, .social-pill, .cell .num,
+  .glass-card p, .info-card p, .member-card p, .hero-statement-card p,
+  .vm-card p, .philo-card p, .lead-card p, .cell p {
+    transform: none !important;
+    transform-style: flat !important;
+  }
+  .specular-sheen {
+    display: none !important;
+  }
+  /* Disable hover-expand on touch */
+  .hover-expandable {
+    transition: none !important;
+  }
+  .hover-expanded {
+    transform: none !important;
   }
 }
 
@@ -1500,6 +1592,12 @@ body.dark-mode .ptag {
   transition: opacity 0.3s ease;
 }
 
+@supports not (backdrop-filter: blur(4px)) {
+  .nav-backdrop {
+    background: rgba(0, 0, 0, 0.6);
+  }
+}
+
 .nav-backdrop.open {
   opacity: 1;
   pointer-events: auto;
@@ -1507,17 +1605,14 @@ body.dark-mode .ptag {
 
 /* Breakpoint: Small Laptops / Tablets (<= 1024px) */
 @media (max-width: 1024px) {
-  .header-top {
-    padding: 10px 4vw;
+  .header-logo-bar {
+    padding: 8px 4vw 4px;
   }
-  .header-logo {
-    height: 54px;
-  }
-  .left-logo .header-logo, .left-logo-img {
+  .header-logo-bar .header-logo {
     height: 60px;
   }
-  .right-logo .header-logo, .right-logo-img {
-    height: 50px;
+  .header-top {
+    padding: 4px 4vw;
   }
   .site-title {
     font-size: 22px;
@@ -1536,19 +1631,34 @@ body.dark-mode .ptag {
 
 /* Breakpoint: Mobile Phones & Portrait Tablets (<= 768px) */
 @media (max-width: 768px) {
+  /* Reduce ambient glows on mobile to prevent rendering lag */
+  body::before {
+    width: 300px !important;
+    height: 300px !important;
+    opacity: 0.6;
+  }
+  body::after {
+    width: 350px !important;
+    height: 350px !important;
+    opacity: 0.5;
+  }
+
+  .header-logo-bar {
+    padding: 8px 3vw 4px;
+  }
+  .header-logo-bar .header-logo {
+    height: 50px !important;
+    max-width: 180px !important;
+  }
+
   .header-top {
-    padding: 8px 3vw;
+    padding: 4px 3vw;
     gap: 6px;
   }
 
-  .left-logo .header-logo, .left-logo-img {
-    height: 42px !important;
-    max-width: 120px !important;
-  }
-
-  .right-logo .header-logo, .right-logo-img {
-    height: 38px !important;
-    max-width: 110px !important;
+  .header-top .theme-toggle-btn {
+    position: static;
+    transform: none;
   }
 
   .site-title {
@@ -1566,7 +1676,7 @@ body.dark-mode .ptag {
   }
 
   .navtoggle {
-    display: block !important;
+    display: flex !important;
   }
 
   .navlinks {
@@ -1575,8 +1685,8 @@ body.dark-mode .ptag {
     right: 0;
     width: 280px;
     max-width: 82vw;
-    height: 100dvh;
     height: 100vh;
+    height: 100dvh;
     background: rgba(251, 239, 239, 0.98);
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
@@ -1584,13 +1694,24 @@ body.dark-mode .ptag {
     justify-content: flex-start;
     align-items: stretch;
     padding: 80px 20px 40px;
-    gap: 10px;
+    gap: 6px;
     transform: translateX(100%);
     transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     box-shadow: -10px 0 40px rgba(0, 0, 0, 0.2);
     border-left: 1px solid var(--border-glass);
     z-index: 1001;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Fallback for Android that doesn't support backdrop-filter */
+  @supports not (backdrop-filter: blur(25px)) {
+    .navlinks {
+      background: rgba(251, 239, 239, 1);
+    }
+    body.dark-mode .navlinks {
+      background: rgba(13, 11, 20, 1);
+    }
   }
 
   body.dark-mode .navlinks {
@@ -1603,11 +1724,14 @@ body.dark-mode .ptag {
   }
 
   .navlinks a {
-    padding: 12px 16px;
-    font-size: 13px;
+    padding: 14px 16px;
+    font-size: 14px;
     border-radius: 10px;
     text-align: left;
     width: 100%;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
   }
 
   .hero {
@@ -1640,27 +1764,47 @@ body.dark-mode .ptag {
     padding: 6px 12px;
     font-size: 11px;
     margin-left: 6px;
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Fix footer wrapping on mobile */
+  .footer {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+  .footer-contact {
+    flex-direction: column;
+    gap: 8px;
   }
 }
 
 /* Breakpoint: Extra Small Mobile Phones (<= 480px) */
 @media (max-width: 480px) {
+  /* Hide ambient glows entirely on very small screens */
+  body::before,
+  body::after {
+    display: none !important;
+  }
+
+  .header-logo-bar {
+    padding: 6px 2vw 2px;
+  }
+  .header-logo-bar .header-logo {
+    height: 42px !important;
+    max-width: 150px !important;
+  }
+
   .header-top {
-    padding: 6px 2vw;
-  }
-
-  .left-logo .header-logo, .left-logo-img {
-    height: 34px !important;
-    max-width: 95px !important;
-  }
-
-  .right-logo .header-logo, .right-logo-img {
-    height: 30px !important;
-    max-width: 85px !important;
+    padding: 2px 2vw;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
   }
 
   .site-title {
-    font-size: 11px !important;
+    font-size: 12px !important;
   }
 
   .theme-toggle-btn {
@@ -1676,6 +1820,33 @@ body.dark-mode .ptag {
     font-size: clamp(24px, 7vw, 36px) !important;
   }
 
+  .hero-description {
+    font-size: 15px !important;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-primary, .btn-secondary {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .grid-cards {
+    grid-template-columns: 1fr !important;
+  }
+
+  .featured-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr !important;
+  }
+
   .domain-grid, .projects-grid, .team-grid, .member-grid, .vision-mission-grid {
     grid-template-columns: 1fr !important;
     gap: 16px !important;
@@ -1685,7 +1856,13 @@ body.dark-mode .ptag {
     padding: 24px 16px !important;
     width: 94vw !important;
   }
-}
 
+  .quote-banner {
+    padding: 30px 20px !important;
+  }
+  .quote-banner blockquote {
+    font-size: 18px !important;
+  }
+}
 
 
